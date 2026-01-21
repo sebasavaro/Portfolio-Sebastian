@@ -199,7 +199,7 @@ const ProjectCard: React.FC<{ project: Project; onOpen: (p: Project) => void }> 
             className="text-[10px] font-display font-black uppercase tracking-[0.2em] transition-colors duration-300"
             style={{ color: isHovered ? accentColor : 'inherit' }}
           >
-            Explorar Caso de Estudio →
+            Explorar Proyecto →
           </span>
         </div>
       </div>
