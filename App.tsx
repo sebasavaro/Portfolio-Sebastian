@@ -90,7 +90,7 @@ const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ p
           onClick={onClose}
           className="bg-white text-black px-4 py-2 font-display font-black text-[10px] uppercase hover:bg-zinc-200 transition-colors flex-shrink-0"
         >
-          Cerrar [ESC]
+          Cerrar
         </button>
       </nav>
 
