@@ -352,7 +352,7 @@ const App: React.FC = () => {
       </header>
 
       <section className="max-w-6xl mx-auto mb-32">
-        <SectionHeader title="Casos de Estudio" subtitle="Proyectos estratégicos" />
+        <SectionHeader title="Proyectos Estratégicos" subtitle="Una parte de mi visión" />
         <div className="space-y-16">
           {projects.map((project) => (
             <ProjectCard 
