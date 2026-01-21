@@ -136,9 +136,6 @@ const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ p
                 alt={`${project.title} view ${idx}`} 
                 className="w-full h-auto object-cover transition-all duration-1000"
               />
-              <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-1 text-[10px] uppercase font-mono tracking-widest border border-zinc-700">
-                Asset_Capture_0{idx + 1}.png
-              </div>
             </div>
           ))}
         </div>
@@ -228,7 +225,7 @@ const App: React.FC = () => {
       id: 'breaking-news',
       category: 'Branding',
       title: 'PL: Sueño de Barrio',
-      concept: 'Diseño de la marca de un equipo de futbol amateur, llevando a otro nivel su identidad y cultura.',
+      concept: 'Esta iniciativa se centró en la profesionalización visual de una institución deportiva amateur, elevando su cultura y sentido de pertenencia a través de un sistema de identidad de élite que fusiona el legado heráldico con la potencia del fútbol contemporáneo. El objetivo principal fue transformar una marca barrial en un símbolo de autoridad competitiva, utilizando una iconografía de alto impacto y una construcción simbólica que proyecta fuerza y tradición desde el primer contacto visual.',
       image: 'https://drive.google.com/file/d/1BD-EtPpDpkr6OViCtA4UJxpHXHSNx9gY/view?usp=sharing',
       gallery: [
         'https://drive.google.com/file/d/1BD-EtPpDpkr6OViCtA4UJxpHXHSNx9gY/view?usp=sharing',
@@ -236,32 +233,34 @@ const App: React.FC = () => {
         'https://drive.google.com/file/d/1UyQuVrdZrpq-Z612BjJYCAM0N317lu-l/view?usp=sharing',
       ],
       details: [
-        'Tipografía: Uso de Archivo Black por su peso visual.',
-        'Paleta: Alto contraste focalizado en la cultura de barrio.',
-        'Retícula: Diseño modular para aplicaciones físicas y digitales.'
+        'Composición Heráldica: Estructura basada en la tradición de clubes clásicos, utilizando soportes simétricos (toros) para reforzar la identidad del nombre y proyectar una imagen de fuerza y competitividad.',
+        'Arquitectura de Kit: Integración del sistema visual en indumentaria técnica, equilibrando la carga gráfica del escudo con una estética de uniforme limpia y funcional.',
+        'Versatilidad Técnica: Proporciones ajustadas para una reproducción impecable en bordados y aplicaciones del kit oficial.'
       ]
     },
     {
       id: 'youtube-ctr',
       category: 'Miniaturas de YouTube',
-      title: 'Arquitectura del Click',
-      concept: 'Creación de thumbnails diseñadas para maximizar el Click-Through Rate (CTR) en un mercado saturado.',
-      image: 'https://images.unsplash.com/photo-1593784991095-a205039470b6?q=80&w=800&auto=format&fit=crop',
+      title: 'Thumbnail: Arquitectura del Click',
+      concept: 'La creación de thumbnails para temas de economía requiere un equilibrio entre rigor y curiosidad. El objetivo de este proyecto fue diseñar una narrativa visual que logre que datos históricos y financieros complejos resulten atractivos y clickeables en un mercado digital saturado',
+      image: 'https://drive.google.com/file/d/1LxsZ4plI3ti-YRHc4101aGKn3ZMx7Kgv/view?usp=sharing',
       gallery: [
-        'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format',
-        'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=1200&auto=format'
+        'https://drive.google.com/file/d/1LxsZ4plI3ti-YRHc4101aGKn3ZMx7Kgv/view?usp=sharing',
+        'https://drive.google.com/file/d/1NqV_k0RwXL3UkC7qJ2fUvyNnNl73o1kD/view?usp=sharing',
+        'https://drive.google.com/file/d/1CvRk1oyHvgTbXbj2YRbqrkgPT3bgslIY/view?usp=sharing',
+        'https://drive.google.com/file/d/135s1wJzJgICQxScDMPMVZKIeMHY_LIrJ/view?usp=sharing',
       ],
       details: [
-        'Jerarquía: Equilibrio de rostros con texto contundente.',
-        'Psicología Visual: Iluminación dramática y contornos.',
-        'Legibilidad: Textos optimizados para pantallas móviles.'
+        'Simbología Conceptual: Uso de objetos icónicos para materializar conceptos financieros abstractos de forma visual e inmediata.',
+        'Composición de Alto CTR: Jerarquía visual diseñada para capturar la atención en segundos, con tipografías de gran peso optimizadas para dispositivos móviles.',
+        'Criterio de Mercado: Diseño estratégico basado en el análisis de tendencias de consumo de contenido educativo.'
       ]
     },
     {
       id: 'rar-automotores',
       category: 'Branding / Estrategia',
       title: 'RAR Automotores: Ingeniería Visual',
-      concept: 'Desarrollo de la identidad integral para una concesaionaria líder. Se posicionó a la marca como un referente moderno a través de un lenguaje visual basado en la aerodinámica.',
+      concept: 'El proyecto consistió en la reingeniería de la identidad visual integral para una comercializadora de vehículos líder, posicionándola como un referente moderno mediante un lenguaje visual basado en principios de aerodinámica y precisión técnica. Se desarrolló un ecosistema de marca de alta performance que utiliza tipografías extendidas y un contraste cromático audaz para proyectar solidez, seguridad y vanguardia en cada punto de contacto con el cliente, optimizando la presencia de la marca tanto en entornos físicos como digitales.',
       image: 'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
       gallery: [
         'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
@@ -271,8 +270,8 @@ const App: React.FC = () => {
       ],
       details: [
         'Concepto: "Velocidad y Precisión" basado en aerodinámica.',
-        'Cromática: Negro Base, Azul Eléctrico (#0061FF) y Blanco.',
-        'Tipografía: Sans-serif expandida para estabilidad institucional.',
+        'Cromática: Negro Base, Azul Eléctrico y Blanco.',
+        'Tipografía: Ethnocentric expandida para estabilidad institucional.',
         'Expansión: Adaptación omnicanal de digital a señalética física.'
       ]
     }
