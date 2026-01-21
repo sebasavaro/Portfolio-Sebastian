@@ -12,7 +12,8 @@ const PROJECT_THEMES: Record<string, string> = {
 // Configuración de contacto
 const CONTACT_CONFIG = {
   whatsapp: "5493512046295", 
-  defaultMessage: "Hola Sebastian, vi tu portafolio y me gustaría hablar sobre un proyecto."
+  defaultMessage: "Hola Sebastián, vi tu portafolio y me gustaría hablar sobre un proyecto de diseño.",
+  linkedin: "https://www.linkedin.com/in/avarobula/" 
 };
 
 /**
@@ -219,6 +220,17 @@ const ProjectCard: React.FC<{ project: Project; onOpen: (p: Project) => void }> 
 
 const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Hook para detectar el ancho de pantalla de forma robusta
+  useEffect(() => {
+    const checkSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
 
   const projects: Project[] = [
     {
@@ -302,7 +314,8 @@ const App: React.FC = () => {
       <header className="max-w-6xl mx-auto mb-32 mt-12 md:mt-24">
         <div className="flex flex-col gap-10">
           <div className="text-7xl md:text-9xl font-display font-black leading-[0.85] text-impact tracking-tighter">
-            <InteractiveTitle text="SEBASTIÁN" />
+            {/* Título dinámico basado en estado JS para máxima fidelidad móvil */}
+            <InteractiveTitle text={isMobile ? "SEBAS" : "SEBASTIÁN"} />
             <InteractiveTitle text="AVARO." />
           </div>
           <div className="max-w-2xl">
@@ -348,9 +361,9 @@ const App: React.FC = () => {
         
         <div className="flex flex-col justify-center">
           <div className="bg-zinc-900 p-8 md:p-14 border-l-8 border-[#0061FF]">
-            <h3 className="text-3xl md:text-5xl font-display font-black mb-6 uppercase leading-none tracking-tighter">¿Impulsamos tu visión visual?</h3>
+            <h3 className="text-3xl md:text-5xl font-display font-black mb-6 uppercase leading-none tracking-tighter">Hablemos de tu próximo proyecto</h3>
             <p className="text-zinc-400 text-lg mb-10 leading-relaxed font-medium">
-              Especializado en diseño editorial y branding para el entorno digital moderno. Escribime para agendar una breve llamada.
+              Consultas sin compromiso. Te respondo en el día para presupuestar una solución a tu medida.
             </p>
             <a 
               href={whatsappUrl}
@@ -366,11 +379,17 @@ const App: React.FC = () => {
 
       <footer className="max-w-6xl mx-auto pt-16 pb-24 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-10">
         <p className="text-zinc-600 font-mono text-[10px] uppercase tracking-[0.3em]">
-          © 2024 VISUAL IMPACT — BRANDING & EDITORIAL STRATEGY
+          © 2026 VISUAL IMPACT — BRANDING & EDITORIAL STRATEGY
         </p>
         <div className="flex gap-10">
-          <a href="#" className="text-zinc-500 hover:text-white transition-colors text-xs uppercase font-black tracking-widest">LinkedIn</a>
-          <a href="#" className="text-zinc-500 hover:text-white transition-colors text-xs uppercase font-black tracking-widest">Behance</a>
+          <a 
+            href={CONTACT_CONFIG.linkedin} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-zinc-500 hover:text-white transition-colors text-xs uppercase font-black tracking-widest"
+          >
+            LinkedIn
+          </a>
         </div>
       </footer>
     </div>
