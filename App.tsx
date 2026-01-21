@@ -9,6 +9,50 @@ const PROJECT_THEMES: Record<string, string> = {
   'rar-automotores': '#0061FF' // Azul Eléctrico
 };
 
+// Configuración de contacto
+const CONTACT_CONFIG = {
+  whatsapp: "5493512046295", 
+  defaultMessage: "Hola Sebastian, vi tu portafolio y me gustaría hablar sobre un proyecto de diseño."
+};
+
+/**
+ * Componente InteractiveLetter: Maneja la iluminación individual de cada letra.
+ */
+const InteractiveLetter: React.FC<{ char: string; color?: string }> = ({ char, color = "#0061FF" }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  if (char === " ") return <span className="inline-block">&nbsp;</span>;
+  if (char === "\n") return <br />;
+
+  return (
+    <span 
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="inline-block transition-all duration-150 cursor-default select-none"
+      style={{ 
+        color: isHovered ? color : 'inherit',
+        transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
+        textShadow: isHovered ? `0 0 20px ${color}` : 'none'
+      }}
+    >
+      {char}
+    </span>
+  );
+};
+
+/**
+ * Componente InteractiveTitle: Divide un texto en letras interactivas.
+ */
+const InteractiveTitle: React.FC<{ text: string; className?: string }> = ({ text, className }) => {
+  return (
+    <div className={className}>
+      {text.split("").map((char, index) => (
+        <InteractiveLetter key={index} char={char} />
+      ))}
+    </div>
+  );
+};
+
 // Función de utilidad para convertir enlaces de Google Drive a enlaces directos de imagen
 const getDriveDirectLink = (url: string) => {
   if (url.includes('drive.google.com')) {
@@ -26,7 +70,7 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string }> = ({ title, 
   </div>
 );
 
-// Componente de Galería / Página de Proyecto (AHORA DINÁMICO)
+// Componente de Galería / Página de Proyecto
 const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
   const accentColor = PROJECT_THEMES[project.id] || '#0061FF';
 
@@ -245,6 +289,8 @@ const App: React.FC = () => {
     }
   ];
 
+  const whatsappUrl = `https://wa.me/5493512046295?text=${encodeURIComponent(CONTACT_CONFIG.defaultMessage)}`;
+
   return (
     <div className="min-h-screen bg-black text-white px-4 py-8 md:px-12 lg:px-24 selection:bg-[#0061FF] selection:text-white">
       {selectedProject && (
@@ -256,9 +302,10 @@ const App: React.FC = () => {
 
       <header className="max-w-6xl mx-auto mb-32 mt-12 md:mt-24">
         <div className="flex flex-col gap-10">
-          <h1 className="text-7xl md:text-9xl font-display font-black leading-[0.85] text-impact tracking-tighter">
-            SEBASTIAN<br/>AVARO.
-          </h1>
+          <div className="text-7xl md:text-9xl font-display font-black leading-[0.85] text-impact tracking-tighter">
+            <InteractiveTitle text="SEBASTIAN" />
+            <InteractiveTitle text="AVARO." />
+          </div>
           <div className="max-w-2xl">
             <p className="text-xl md:text-3xl font-semibold text-zinc-400 border-l-8 border-white pl-8 py-2 leading-tight italic">
               "Diseñador gráfico enfocado en comunicación de alto impacto. Transformo la urgencia en piezas visuales audaces y directas."
@@ -304,13 +351,15 @@ const App: React.FC = () => {
           <div className="bg-zinc-900 p-8 md:p-14 border-l-8 border-[#0061FF]">
             <h3 className="text-3xl md:text-5xl font-display font-black mb-6 uppercase leading-none tracking-tighter">¿Impulsamos tu visión visual?</h3>
             <p className="text-zinc-400 text-lg mb-10 leading-relaxed font-medium">
-              Especializado en diseño editorial y branding para el entorno digital moderno.
+              Especializado en diseño editorial y branding para el entorno digital moderno. Escribime para agendar una breve llamada.
             </p>
             <a 
-              href="mailto:hola@tuemail.com" 
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-white text-black px-10 py-5 text-lg font-display font-black hover:bg-[#0061FF] hover:text-white transition-all uppercase tracking-tighter w-full text-center"
             >
-              Iniciar un proyecto
+              Iniciar vía WhatsApp
             </a>
           </div>
         </div>
