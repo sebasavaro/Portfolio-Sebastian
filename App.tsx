@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Project, Skill } from './types';
 
@@ -232,6 +231,32 @@ const App: React.FC = () => {
     return () => window.removeEventListener('resize', checkSize);
   }, []);
 
+  // Manejo de navegación para evitar salida accidental al pulsar 'atrás' en móvil
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      // Si el usuario presiona atrás, cerramos el proyecto si hay uno abierto
+      setSelectedProject(null);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const openProject = (project: Project) => {
+    // Añadimos una entrada al historial para que el botón atrás funcione como 'cerrar'
+    window.history.pushState({ modal: true }, '');
+    setSelectedProject(project);
+  };
+
+  const closeProject = () => {
+    // Si cerramos manualmente, quitamos la entrada del historial extra
+    if (window.history.state?.modal) {
+      window.history.back();
+    } else {
+      setSelectedProject(null);
+    }
+  };
+
   const projects: Project[] = [
     {
       id: 'breaking-news',
@@ -307,7 +332,7 @@ const App: React.FC = () => {
       {selectedProject && (
         <ProjectGallery 
           project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
+          onClose={closeProject} 
         />
       )}
 
@@ -333,7 +358,7 @@ const App: React.FC = () => {
             <ProjectCard 
               key={project.id} 
               project={project} 
-              onOpen={setSelectedProject}
+              onOpen={openProject}
             />
           ))}
         </div>
@@ -397,3 +422,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
